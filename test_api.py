@@ -1,0 +1,5 @@
+KEY = '53C1334BD960FF762C72DA3DE6F400C6'
+DOMEIN = 'huv1nteam3.duckdns.org'
+
+
+
