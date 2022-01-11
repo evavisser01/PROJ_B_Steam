@@ -224,7 +224,7 @@ def zoeken(data, zoek_categorie, zoekopdracht):
     """
     # Code voor binair zoeken.
     gevonden_data = []
-    gesorteerde_data = data_sorteren(data, zoek_categorie)
+    gesorteerde_data = merge_sort(data, zoek_categorie)
     laag = 0
     hoog = len(gesorteerde_data) - 1
 
@@ -364,10 +364,48 @@ def quick_sort(data, sort_by):
     return quick_sort(kleiner_vergelijking, sort_by) + [vergelijk_dict] + quick_sort(groter_vergelijking, sort_by)
 
 
+def merge_sort(data, sort_by):
+    if len(data) > 1:
+        # Als er meer dan een item in data zit dan splits je de data in 2e.
+        eerste_helft_data = data[:len(data) // 2]
+        tweede_helft_data = data[len(data) // 2:]
+
+        # Het sorteren van de eerste en tweede helft van de data
+        merge_sort(eerste_helft_data, sort_by)
+        merge_sort(tweede_helft_data, sort_by)
+
+        # Sorteer indexen
+        index_eerste_helft = 0
+        index_tweede_helft = 0
+        index_gesorteerde_data = 0
+
+        # Het vergelijken van de eerste lijst met de tweede lijst.
+        while index_eerste_helft < len(eerste_helft_data) and index_tweede_helft < len(tweede_helft_data):
+            if eerste_helft_data[index_eerste_helft][sort_by] < tweede_helft_data[index_tweede_helft][sort_by]:
+                data[index_gesorteerde_data] = eerste_helft_data[index_eerste_helft]
+                index_eerste_helft += 1
+
+            else:
+                data[index_gesorteerde_data] = tweede_helft_data[index_tweede_helft]
+                index_tweede_helft += 1
+
+            index_gesorteerde_data += 1
+
+        # Als er een lijst helemaal gesorteerd is, dan moet het overige van de andere lijst nog in de lijst.
+        while index_eerste_helft < len(eerste_helft_data):
+            data[index_gesorteerde_data] = eerste_helft_data[index_eerste_helft]
+            index_eerste_helft += 1
+            index_gesorteerde_data += 1
+
+        while index_tweede_helft < len(tweede_helft_data):
+            data[index_gesorteerde_data] = tweede_helft_data[index_tweede_helft]
+            index_tweede_helft += 1
+            index_gesorteerde_data += 1
+
+    return data
 
 
 # --------Onderdeel 14------------ Zoeken (geavanceerd) - NOG NIET GEMAAKT
-
 def zoeken_geavanceerd():
     """
     Pas het principe van binair zoeken toe op een datastructuur die complexer is dan een lijst. Denk hierbij aan het
