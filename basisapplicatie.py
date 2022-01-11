@@ -224,7 +224,7 @@ def zoeken(data, zoek_categorie, zoekopdracht):
     """
     # Code voor binair zoeken.
     gevonden_data = []
-    gesorteerde_data = merge_sort(data, zoek_categorie)
+    gesorteerde_data = data_sorteren(data, zoek_categorie)
     laag = 0
     hoog = len(gesorteerde_data) - 1
 
@@ -362,6 +362,8 @@ def quick_sort(data, sort_by):
             elif dictionary[sort_by] >= vergelijk_getal:
                 groter_vergelijking.append(dictionary)
     return quick_sort(kleiner_vergelijking, sort_by) + [vergelijk_dict] + quick_sort(groter_vergelijking, sort_by)
+
+
 
 
 # --------Onderdeel 14------------ Zoeken (geavanceerd) - NOG NIET GEMAAKT
